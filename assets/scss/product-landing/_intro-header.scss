@@ -1,0 +1,39 @@
+.intro-header {
+  padding-left: 0;
+  padding-right: 0;
+  overflow: auto;
+  color: #fff;
+
+  .center-panel {
+    height: 300px;
+    padding: 40px 0;
+
+    text-align: center;
+    h1 {
+      margin: 0;
+      font-size: 44px;
+    }
+
+    p {
+      font-size: 24px;
+    }
+  }
+}
+
+@keyframes rotation-front {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes rotation-back {
+  0% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}

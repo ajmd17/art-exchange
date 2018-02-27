@@ -1,0 +1,48 @@
+.intro-nav {
+
+  height: 80px;
+  font-size: 22px;
+  margin: 0 40px;
+  padding: 10px 0;
+  line-height: 80px;
+  vertical-align: middle;
+  border-bottom: 3px solid #f7f8fa;
+
+  h1 {
+    display: inline-block;
+    margin: 0;
+    font-size: 26px;
+    
+  }
+
+  img.logo {
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin-right: 12px;
+    margin-top: (80px - 48px) / 2;
+  }
+
+  ul {
+    float: right;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 19px;
+
+    li {
+      display: inline;
+      padding: 0 18px;
+
+      a {
+        display: inline;
+        color: #D5CDE0;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.coin-selector {
+  ul {
+    list-style: none;
+    padding: 25px 0;
+    margin: 0;
+    overflow: auto;
+  }
+  
+  li {
+    position: relative;
+    width: 33.33%;
+    float: left;
+    font-size: 20px;
+    padding: 10px 0;
+    border-radius: 15px;
+    transition: transform 0.3s ease, color 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+
+      a {
+        color: #7B71D2;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 5px;
+    }
+
+    span {
+      display: block;
+    }
+  }
+}

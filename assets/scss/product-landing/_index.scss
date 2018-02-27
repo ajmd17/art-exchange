@@ -1,0 +1,23 @@
+
+.product-landing {
+  @import './_intro-header.scss';
+  @import './_intro-nav.scss';
+  @import './_how-it-works.scss';
+  @import './_faq-section.scss';
+  @import './_footer.scss';
+
+  background-color: #f7f8fa;
+
+  section {
+    width: 85%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 25px 40px;
+  }
+
+  .vignette {
+    color: #fff;
+    background-image: url('/images/header-bg.jpg');
+    border-bottom: 10px solid #eee;
+  }
+}

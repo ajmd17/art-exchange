@@ -1,0 +1,19 @@
+.view-deposit {
+  .content {
+    overflow: auto;
+
+    img.currency-symbol {
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin-right: 25px;
+    }
+
+    .right-panel {
+      font-size: 18px;
+      > div {
+        text-align: left;
+      }
+    }
+  }
+}

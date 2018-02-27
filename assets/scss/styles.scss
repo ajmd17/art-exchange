@@ -1,0 +1,203 @@
+$desktop-width: 1024px;
+$tablet-width: 768px;
+$phone-width: 480px;
+$small-phone-width: 320px;
+
+@mixin default-width {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (max-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+@mixin small-phone {
+  @media (max-width: #{$small-phone-width}) {
+    @content;
+  }
+}
+
+@import './product-landing/_index.scss';
+@import './create-card/_index.scss';
+@import './view-deposit/_index.scss';
+@import './coin-selector/_index.scss';
+@import './login/_index.scss';
+@import './trade/_index.scss';
+@import './_navbar.scss';
+@import './_modal.scss';
+@import './_dropdown.scss';
+@import './_accordion.scss';
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  font-family: 'Saira Condensed', sans-serif;
+}
+
+@mixin btn() {
+  position: relative;
+  display: inline-block;
+  outline: none;
+  margin: 0;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: inherit;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  color: #485a69 !important;
+  font-weight: bold;
+  background-color: #f2f2f2;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s linear, transform 0.3s ease, box-shadow 0.3s linear;
+
+  &:disabled, &.disabled {
+    filter: grayscale(80%);
+    cursor: not-allowed;
+  }
+}
+
+.btn {
+  @include btn;
+  &.primary {
+    background-color: #197CFE;
+    color: #fff !important;
+  }
+  &:hover:not([disabled]) {
+    //transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+  }
+  &.large {
+    font-size: 26px;
+    padding: 12px 40px;
+    width: 360px;
+  }
+}
+
+.app-container {
+  > .card-view {
+    position: relative;
+    width: 65%;
+    max-width: 700px;
+    border-radius: 30px;
+    background-color: #fff;
+    margin: 25px auto;
+    padding: 20px 30px;
+    text-align: center;
+    box-shadow: 0 0 12px -1px rgba(0,0,0,0.3);
+
+    h3 {
+      margin: 0;
+      margin-bottom: 10px;
+      font-size: 28px;
+      color: #485a69;
+    }
+
+    hr {
+      border: none;
+      border-bottom: 3px solid #eee;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #7B71D2;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.field {
+  margin-bottom: 10px;
+
+  span {
+    //display: inline-block;
+    font-size: 15px;
+    margin-right: 10px;
+    width: 180px;
+    text-align: left;
+    float: left;
+  }
+  input[type=text], input[type=password] {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    font-family: inherit;
+    padding: 5px 10px;
+    transition: border-color 0.2s ease;
+
+    &:focus {
+      border-color: #AFA1C3;
+    }
+  }
+}
+
+.subtext {
+  font-size: 12px;
+  color: #888;
+}
+
+.button-group {
+  margin-top: 15px;
+
+  .btn {
+    margin: 0 4px;
+  }
+}
+
+.error-msg {
+  color: red;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+.success-msg {
+  color: #0ab498;
+  line-height: 50px;
+
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+  }
+
+  .success-img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+}
+
+.vignette {
+  box-shadow: 0 0 200px rgba(0,0,0,0.25) inset;
+}

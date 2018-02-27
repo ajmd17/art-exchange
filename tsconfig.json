@@ -1,0 +1,29 @@
+{
+  "version": "0.1.0",
+  "command": "tsc",
+  "isShellCommand": true,
+  "args": ["-p", "."],
+  "showOutput": "silent",
+  "problemMatcher": "$tsc",
+  "compilerOptions": {
+    "module": "commonjs",
+    "sourceMap": true,
+    
+    // temporary: used because client side uses jsx
+    "allowJs": true,
+    "target": "es5",
+    "jsx": "react",
+    "removeComments": true,
+    "rootDir": "./src",
+    "outDir": "./lib"
+    
+  },
+  "exclude": [
+    "node_modules/*",
+    "lib/*",
+    "./util",
+    "webpack.production.config.js",
+    "webpack.config.js",
+    "*.scss"
+  ]
+}

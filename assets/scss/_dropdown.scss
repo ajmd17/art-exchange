@@ -1,0 +1,75 @@
+.dropdown {
+  $dropdown-width: 200px;
+  $dropdown-padding: 10px;
+
+  opacity: 1;
+  transition: opacity 0.5s ease;
+
+  &.hiding {
+    opacity: 0;
+  }
+
+  .message-box {
+    position: fixed;
+    width: $dropdown-width;
+    padding: $dropdown-padding;
+    border-radius: 3px;
+    transform: translateX(-1 * (($dropdown-width + ($dropdown-padding * 2)) / 2 + 1px));
+    font-size: 16px;
+    background: #fff;
+    z-index: 500;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+
+    a {
+      display: block;
+      padding: 4px 10px;
+      border-radius: 3px;
+      line-height: initial;
+      text-decoration: none;
+
+      &:not(.active):hover {
+        text-decoration: underline;
+        background-color: #f7f8fa;
+      }
+
+      img, svg {
+        height: 16px;
+        width: 16px;
+        margin-right: 5px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  @mixin sq-element-msg-arrow($offset, $color) {
+    position: absolute;  
+    content: "";
+    width: 0; 
+    height: 0;
+    //left: 50%;
+    top: -$offset;
+    margin-left: -$offset;
+    border-left: $offset solid transparent;
+    border-right: $offset solid transparent; 
+    border-bottom: $offset solid $color; 
+  }
+
+  .arrow {
+    position: relative;
+    width: 100%;
+    left: 50%;
+
+    &:after {
+      @include sq-element-msg-arrow(7px, #fff);
+    }
+  }
+
+  h2 {
+    margin: 0 0 3px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    line-height: normal;
+    text-align: center;
+    color: #485a69;
+  }
+}

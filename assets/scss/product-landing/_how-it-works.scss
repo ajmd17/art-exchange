@@ -1,0 +1,52 @@
+.how-it-works {
+  margin: 35px auto;
+  background-color: #fff;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+  border-radius: 30px;
+
+  h3 {
+    text-align: center;
+    margin: 20px 0;
+    margin-top: 0;
+    color: #485a69;
+    font-size: 28px;
+  }
+
+  .part {
+    padding-bottom: 25px;
+    overflow: auto;
+    
+    &:not(:first-of-type) {
+      padding-top: 25px;
+    }
+    
+    &:not(:last-of-type) {
+      border-bottom: 5px solid #eee;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .circle {
+      margin-right: 25px;
+      border-radius: 50%;
+      background-color: #f7f8fa;
+      width: 140px;
+      height: 140px;
+
+      &.left {
+        float: left;
+      }
+      &.right {
+        float: right;
+      }
+
+      img {
+        width: 80px;
+        height: 80px;
+        margin: 140px / 2 - 80px / 2;
+      }
+    }
+  }
+}
