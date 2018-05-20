@@ -43,6 +43,7 @@ $small-phone-width: 320px;
 @import './_modal.scss';
 @import './_dropdown.scss';
 @import './_accordion.scss';
+@import './_screen.scss';
 
 body {
   height: 100%;
@@ -52,7 +53,7 @@ body {
   -moz-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-family: 'Saira Condensed', sans-serif;
+  font-family: 'Muli', sans-serif;
 }
 
 @mixin btn() {
@@ -126,7 +127,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #7B71D2;
+  color: #197CFE;
 
   &:hover {
     text-decoration: underline;
@@ -199,5 +200,5 @@ a {
 }
 
 .vignette {
-  box-shadow: 0 0 200px rgba(0,0,0,0.25) inset;
+  box-shadow: 0 0 200px rgba(0,0,0,0.4) inset;
 }

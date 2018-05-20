@@ -4,8 +4,7 @@ class IntroNav extends React.Component {
   render() {
     return (
       <nav className='intro-nav'>
-        <img className='logo' src='/images/logo.svg'/>
-        <h1>multiex</h1>
+        <h1>artx</h1>
 
         <ul>
           <li>

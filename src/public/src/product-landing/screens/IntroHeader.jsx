@@ -3,17 +3,24 @@ import * as React from 'react';
 class IntroHeader extends React.Component {
   render() {
     return (
-      <section className='intro-header'>
+      <div className='intro-header'>
         <div className='center-panel'>
-          <h1>The aggregated crypto exchange</h1>
+          <h1>Digital Art Exchange</h1>
           <p>
-            We aggregate the best bids and offers from the top platforms.
+            Using the power of blockchain to bring properties of physical art into the digital world.<br/>
+            Artx allows independent artists raise funds and for supporters to trade digital art assets.
           </p>
-          <a className='btn primary large' href='/trade'>
-            View Market
-          </a>
+          <br/>
+          <div className='buttons'>
+            <a className='btn large' href='#features'>
+              Learn More
+            </a>
+            <a className='btn primary large' href='/trade'>
+              View Market
+            </a>
+          </div>
         </div>
-      </section>
+      </div>
     );
   }
 }

@@ -1,0 +1,3 @@
+# ArtExchange contract readme
+
+Currently, for the platform alpha phase, the site will operate in a more 'traditional' manner, with data stored in a NoSQL database (MongoDB). After this basic infrastructure it built and the basic ideas are in place, it will be re-written to use decentralized technologies like IPFS (images) with issued asset data such as supply and ownership stored on the Ethereum blockchain.

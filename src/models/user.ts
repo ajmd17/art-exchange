@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema({
 
   // TODO: 2FA, GMC addresses
 
-  isTemporary: {
-    type: Boolean,
-    default: false
+  walletAddresses: {
+    type: [String],
+    default: []
   }
 });
 

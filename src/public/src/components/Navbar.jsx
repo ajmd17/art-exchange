@@ -6,11 +6,13 @@ import TradeSelector from './TradeSelector';
 
 // to-do: auto pull coins from supported exchanges.
 import supportedCoins from '../data/supported-coins';
+import auth from '../services/auth';
 
 const navlinks = [
   { url: '/', name: 'Home', absolute: true },
   { url: '/trade', name: 'Trade' },
-  { url: '/login', name: 'Login' }
+  { url: '/account', name: 'Account', loggedIn: true },
+  { url: '/login', name: 'Login', loggedIn: false }
 ]
 
 class Navbar extends React.Component {
@@ -75,30 +77,21 @@ class Navbar extends React.Component {
     return (
       <nav className='navbar'>
         <a href='/'>
-          <img className='logo' src='/images/logo.svg'/>
-          <h1>multiex</h1>
+          <h1>artx</h1>
         </a>
 
         <ul>
-          <li>
-            <Link to='/' className={this.isLinkActive('/', true) ? 'active' : ''}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to='/trade' className={this.isLinkActive('/') ? 'active' : ''}>
-              Trade
-            </Link>
-            <span>
-              <span className='fa fa-caret-down' aria-hidden onMouseOver={this.handleTradeMouseOver}/>
-              {this.renderDropdown()}
-            </span>
-          </li>
-          <li>
-            <Link to='/login' className={this.isLinkActive('/login') ? 'active' : ''}>
-              Login
-            </Link>
-          </li>
+          {navlinks.map((navlink, index) => {
+            if (typeof navlink.loggedIn === 'undefined' || navlink.loggedIn === auth.isLoggedIn) {
+              return (
+                <li key={index}>
+                  <Link className={this.isLinkActive(navlink) ? 'active' : ''} to={navlink.url}>
+                    {navlink.name}
+                  </Link>
+                </li>
+              );
+            }
+          })}
         </ul>
       </nav>
     );

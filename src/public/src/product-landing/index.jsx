@@ -4,6 +4,7 @@ import IntroHeader from './screens/IntroHeader';
 import IntroNav from './screens/IntroNav';
 import HowItWorks from './screens/HowItWorks';
 import FaqSection from './screens/FaqSection';
+import Roadmap from './screens/Roadmap';
 import Footer from './screens/Footer';
 
 class ProductLanding extends React.Component {
@@ -15,6 +16,7 @@ class ProductLanding extends React.Component {
           <IntroHeader/>
         </div>
         <HowItWorks/>
+        <Roadmap/>
         <Footer/>
       </div>
     );

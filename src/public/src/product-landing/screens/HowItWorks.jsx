@@ -3,38 +3,31 @@ import * as React from 'react';
 class HowItWorks extends React.Component {
   render() {
     return (
-      <section className='how-it-works'>
-        <h3>How does it work?</h3>
-        <div className='part'>
-          <div className='circle left'>
-            <img src='/images/lock.svg'/>
-          </div>
+      <section id='features' className='how-it-works'>
+        <h2>Features</h2>
 
+        <div className='part'>
+          <h3>Tradable digital art pieces</h3>
+          <p>Digital art assets are stored on the blockchain to cryptographically prove ownership.<br/>Ownership of a particular art piece may be sold to someone else through the exchange.<br/>Original artists will also be able to receive a percentage of trading fees when the piece is bought or sold.</p>
+          {/* <h3>Issue a limited run of an art piece.</h3> */}
+          {/* <p>If you want to issue only 100 copies, then only 100 copies will ever be able to exist due to the nature of the blockchain.</p> */}
+        </div>
+
+        <div className='part'>
+          <h3>Raise funds via an &ldquo;initial art offering&rdquo;</h3>
           <p>
-            In your browser, GiftMeCrypto generates a new wallet for whatever cryptocurrency you choose.
+            As an artist, you may issue a limited run of an art piece to your followers. If you issue 100 copies, only 100 copies will <strong>ever</strong> exist, due to the nature of the blockchain.
             <br/>
-            The wallet's private key is secured using a <strong>secret code word</strong> that you will share with the person you're giving the gift card to.<br/>
-            This secret code word is not stored on our physical cards, nor does it pass through our systems, ensuring that the funds cannot not accessed by us or any other third-party.
+            As a follower and supporter of an artist, you may participate in the IAO (Initial Art Offering) by purchasing a piece of art using the ARTX token. You may then trade the art piece for ARTX tokens on the online exchange, when it is made available.
           </p>
         </div>
-        <div className='part'>
-          <div className='circle right'>
-            <img src='/images/money.svg'/>
-          </div>
 
-          <p>
-            Once the wallet has been created, we'll provide an address that you can send funds to.<br/>
-            We charge a small processing fee based on the amount that will be held on the card (larger amounts = smaller fees).<br/>
-            Fees are reduced by 50% if you use our GMC token to pay for fees.
-          </p>
-        </div>
         <div className='part'>
-          <div className='circle left'>
-            <img src='/images/lock.svg'/>
-          </div>
-
+          <h3>ARTX token</h3>
           <p>
-            Once funds are sent, we will 
+            The artx online exchange is powered by the <strong>ARTX</strong> token.<br/>
+            Using this token allows users to participate in IAOs and purchase pieces of art on the exchange, and for artists to raise funds for their art pieces.<br/>
+            You may also cash-out your ARTX tokens by trading them for other coins such as Ethereum.
           </p>
         </div>
       </section>

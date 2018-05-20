@@ -61,14 +61,15 @@ app
   '/register',
   '/trade',
   '/trade/:coin',
-  '/account'
+  '/account',
+  '/issue'
 ], (req, res) => {
   serverSideRenderer.handle(req, res, '', '');
 });
 
 // start the server
 (function (port) {
-  mongoose.connect('mongodb://localhost/multiex');
+  mongoose.connect('mongodb://localhost/artx');
 
   console.log('Runnig routine...');
   routine.run().then(() => {

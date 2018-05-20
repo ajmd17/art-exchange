@@ -11,9 +11,12 @@ import { User } from '../../models/user';
 import { PhoneNumber } from '../../models/phone-number';
 import { Deposit } from '../../models/deposit';
 
+import assetRouter from './asset';
+
 const twilioClient = new twilio(config.TWILIO_SID, config.TWILIO_AUTH_TOKEN);
 
 const apiRouter = express.Router();
+apiRouter.use('/assets', assetRouter);
 
 /*apiRouter.post('/smsVerification', (req, res) => {
   if (req.body.phoneNumber === undefined) {

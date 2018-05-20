@@ -1,17 +1,4 @@
 .how-it-works {
-  margin: 35px auto;
-  background-color: #fff;
-  box-shadow: 0 0 12px rgba(0,0,0,0.1);
-  border-radius: 30px;
-
-  h3 {
-    text-align: center;
-    margin: 20px 0;
-    margin-top: 0;
-    color: #485a69;
-    font-size: 28px;
-  }
-
   .part {
     padding-bottom: 25px;
     overflow: auto;
@@ -22,6 +9,14 @@
     
     &:not(:last-of-type) {
       border-bottom: 5px solid #eee;
+    }
+
+    h3 {
+      text-align: left;
+      margin: 5px 0;
+      margin-top: 0;
+      color: #485a69;
+      font-size: 24px;
     }
 
     p {

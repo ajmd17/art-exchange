@@ -15,6 +15,7 @@ import Login from './login';
 import Register from './register';
 import Trade from './trade';
 import TradeView from './trade/components/TradeView';
+import IssueAsset from './issue-asset';
 
 function isBrowser() {
   return typeof window !== 'undefined' && window.document && window.document.createElement;
@@ -106,6 +107,7 @@ const appRouter = () => {
         <Route path='/register' component={Register}/>
         <Route path='/trade' component={Trade}/>
         <Route path='/trade/:tradingPair' component={TradeView}/>
+        <Route path='/issue' component={IssueAsset}/>
       </Route>
     </Router>
   );

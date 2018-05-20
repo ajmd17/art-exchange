@@ -10,14 +10,25 @@
 
   section {
     width: 85%;
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 1200px;
     padding: 25px 40px;
+    margin: 35px auto;
+    background-color: #fff;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    border-radius: 30px;
+
+    h2 {
+      text-align: center;
+      margin: 20px 0;
+      margin-top: 0;
+      color: #485a69;
+      font-size: 28px;
+    }
   }
 
   .vignette {
     color: #fff;
-    background-image: url('/images/header-bg.jpg');
+    background-image: url('/images/lowpoly5.png');
     border-bottom: 10px solid #eee;
   }
 }
