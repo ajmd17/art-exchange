@@ -70,7 +70,7 @@ body {
   text-align: center;
   cursor: pointer;
   color: #485a69 !important;
-  font-weight: bold;
+  font-weight: normal;
   background-color: #f2f2f2;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   transition: background-color 0.2s linear, transform 0.3s ease, box-shadow 0.3s linear;
@@ -96,6 +96,10 @@ body {
     font-size: 26px;
     padding: 12px 40px;
     width: 360px;
+  }
+  &.small {
+    font-size: 14px;
+    padding: 6px 12px;
   }
 }
 
@@ -145,7 +149,10 @@ a {
     text-align: left;
     float: left;
   }
-  input[type=text], input[type=password] {
+  input[type=text],
+  input[type=password],
+  input[type=number],
+  textarea {
     width: 100%;
     box-sizing: border-box;
     font-size: 18px;
@@ -157,7 +164,7 @@ a {
     transition: border-color 0.2s ease;
 
     &:focus {
-      border-color: #AFA1C3;
+      border-color: #197CFE;
     }
   }
 }
@@ -201,4 +208,8 @@ a {
 
 .vignette {
   box-shadow: 0 0 200px rgba(0,0,0,0.4) inset;
+}
+
+h1, h2, h3 {
+  font-weight: normal;
 }

@@ -35,6 +35,14 @@ const client = {
           'x-access-token': auth.accessToken
         }
       }).then(res => res.data);
+    },
+
+    submit(data) {
+      return axios.post('/api/assets', data, {
+        headers: {
+          'x-access-token': auth.accessToken
+        }
+      }).then(res => res.data);
     }
   }
 };

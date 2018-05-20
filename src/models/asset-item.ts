@@ -13,6 +13,27 @@ import { Order } from './order';
 // this will soon be moved into the blockchain,
 // right now it is centralized.
 const assetItemSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+
+  // order book
+  bids: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
+  }],
+  asks: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Order'
+  }],
+
+  // Everything below should be held in the ethereum smart contract.
+
   totalSupply: Number,
   imageHashes: [String],
   creator: {
@@ -24,15 +45,6 @@ const assetItemSchema = new mongoose.Schema({
     walletAddress: String,
     amount: Number
   }], // LOL DECENTRALIZED AF
-  // order book
-  bids: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Order'
-  }],
-  asks: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Order'
-  }]
 });
 
 const AssetItem = mongoose.model('AssetItem', assetItemSchema);

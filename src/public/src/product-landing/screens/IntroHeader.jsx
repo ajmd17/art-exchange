@@ -8,7 +8,7 @@ class IntroHeader extends React.Component {
           <h1>Digital Art Exchange</h1>
           <p>
             Using the power of blockchain to bring properties of physical art into the digital world.<br/>
-            Artx allows independent artists raise funds and for supporters to trade digital art assets.
+            art-exchange allows independent artists raise funds and for supporters to trade digital art assets.
           </p>
           <br/>
           <div className='buttons'>

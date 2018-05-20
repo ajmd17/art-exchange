@@ -49,7 +49,7 @@ class ByVolumeSection extends React.Component {
   render() {
     return (
       <section className='market-section'>
-        <h3>By volume</h3>
+        <h3>Top volume</h3>
 
         {this.renderAssets()}
       </section>

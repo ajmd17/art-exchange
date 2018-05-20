@@ -6,9 +6,16 @@ class AssetItem extends React.Component {
   };
 
   render() {
+    // @TODO: Get last sold price
     return (
       <div className='asset-item'>
-        Test Item
+        <div><strong>{this.props.assetItem.title}</strong></div>
+        <p>{this.props.assetItem.description}</p>
+        {/* @TODO: image preview */}
+        <hr/>
+        <a className='btn primary small' href={`/trade/asset/${this.props.assetItem._id}`}>
+          View Market
+        </a>
       </div>
     );
   }

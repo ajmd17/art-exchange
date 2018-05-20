@@ -4,7 +4,7 @@ class IntroNav extends React.Component {
   render() {
     return (
       <nav className='intro-nav'>
-        <h1>artx</h1>
+        <h1>art-exchange</h1>
 
         <ul>
           <li>

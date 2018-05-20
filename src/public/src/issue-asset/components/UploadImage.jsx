@@ -89,7 +89,7 @@ class UploadImage extends React.Component {
   renderUploadButton() {
     return (
       <div>
-        <button className='btn primary' onClick={this.handleUploadImageClick}>
+        <button className='btn' onClick={this.handleUploadImageClick}>
           Upload Image{this.props.multi ? '(s)' : ''}
         </button>
       </div>

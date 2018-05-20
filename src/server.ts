@@ -60,7 +60,7 @@ app
   '/login',
   '/register',
   '/trade',
-  '/trade/:coin',
+  '/trade/asset/:asset',
   '/account',
   '/issue'
 ], (req, res) => {
@@ -71,7 +71,7 @@ app
 (function (port) {
   mongoose.connect('mongodb://localhost/artx');
 
-  console.log('Runnig routine...');
+  console.log('Running routine...');
   routine.run().then(() => {
     server.listen(port);
     console.log('Listening on port ' + port + '...');

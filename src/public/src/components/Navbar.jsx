@@ -77,7 +77,7 @@ class Navbar extends React.Component {
     return (
       <nav className='navbar'>
         <a href='/'>
-          <h1>artx</h1>
+          <h1>art-exchange</h1>
         </a>
 
         <ul>

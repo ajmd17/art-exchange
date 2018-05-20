@@ -1,6 +1,17 @@
 import * as React from 'react';
 
 class TradeView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      assetItem: null
+    };
+  }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   render() {
     return (
       <div className='trade-view'>

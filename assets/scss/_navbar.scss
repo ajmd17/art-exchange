@@ -6,12 +6,17 @@
   padding: 5px 15px;
   line-height: 50px;
   vertical-align: middle;
+  background-color: #f7f8fa;
+  // border-bottom: 5px solid #eee;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
 
   h1 {
     display: inline-block;
     margin: 0;
     font-size: 22px;
-    color: #555;
+    font-weight: bold;
+    color: #485a69;
   }
 
   img.logo {
