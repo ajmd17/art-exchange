@@ -24,6 +24,10 @@ const client = {
   },
 
   assets: {
+    get(id) {
+      return axios.get(`/api/assets/${id}`).then(({ data }) => data);
+    },
+
     getAll(by=null) {
       return axios.get(`/api/assets/all${by != null ? `?by=${encodeURIComponent(by)}` : ''}`).then(({ data }) => data);
     },
@@ -37,6 +41,10 @@ const client = {
       }).then(res => res.data);
     },
 
+    getImage(imageHash) {
+      return axios.get(`/api/assets/images/${imageHash}`).then(res => res.data);
+    },
+
     submit(data) {
       return axios.post('/api/assets', data, {
         headers: {
@@ -46,5 +54,9 @@ const client = {
     }
   }
 };
+
+if (typeof window !== 'undefined') {
+  window.client = client;
+}
 
 export default client;

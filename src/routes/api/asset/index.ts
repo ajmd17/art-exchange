@@ -30,7 +30,7 @@ const assetRouter = express.Router();
 assetRouter.post('/uploadImages', upload.any(), (req, res) => {
   Promise.all(req.files.map((file, index) => {
     // upload each file to IPFS
-    return ipfs.upload(file.originalname, file.buffer);
+    return ipfs.upload(file.originalname, Buffer.from(file.buffer));
   })).then((ipfsObjects) => {
     let imageObjects = [];
 
@@ -46,6 +46,19 @@ assetRouter.post('/uploadImages', upload.any(), (req, res) => {
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
       error: 'Images could not be uploaded'
     });
+  });
+});
+
+assetRouter.get('/images/:imageHash', (req, res) => {
+  ipfs.node.files.cat(req.params.imageHash, (err, data) => {
+    if (err) {
+      debug.error('Failed to load file from ipfs:', err);
+      return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+        error: 'Could not load file from ipfs'
+      });
+    }
+
+    res.send(Buffer.from(data).toString('base64'));
   });
 });
 
@@ -78,6 +91,21 @@ assetRouter.get('/all', (req, res) => {
       error: err.message
     });
   }
+});
+
+assetRouter.get('/:id', (req, res) => {
+  AssetItem.findById(req.params.id).then((assetItem) => {
+    if (assetItem == null) {
+      return res.sendStatus(httpStatus.NOT_FOUND);
+    }
+
+    res.json({
+      assetItem
+    });
+  }).catch((err) => {
+    debug.error(`Failed to load asset with id "${req.params.id}"`, err);
+    res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  });
 });
 
 // @TODO: think about allowing descriptions to be edit-able,
@@ -113,12 +141,24 @@ assetRouter.post('/', authMiddleware, (req, res) => {
 
   // upload metadata object to IPFS
   console.log('req.decoded = ', (<any>req).decoded);
+  console.log('req.body = ', req.body);
+
+  const imageHashes = [];
+
+  if (req.body.images && req.body.images.length != 0) {
+    req.body.images.forEach((imageObject) => {
+      console.log('imageObject = ', imageObject);
+      imageHashes.push(imageObject.hash);
+    });
+  }
 
   new AssetItem({
     title: req.body.title,
     description: req.body.description,
     creator: (<any>req).decoded.uid,
-    totalSupply: req.body.totalSupply
+    totalSupply: req.body.totalSupply,
+
+    imageHashes
   }).save().then((assetItem) => {
     res.json({ assetItem });
   }).catch((err) => {

@@ -32,6 +32,8 @@ class UploadImage extends React.Component {
   submit() {
     let formData = new FormData();
 
+    console.log('in Upload image: ', this.state.images);
+
     this.state.images.forEach((image) => {
       if (image instanceof File) {
         formData.append('images', image);
@@ -41,6 +43,7 @@ class UploadImage extends React.Component {
     const isS3Image = image => !(image instanceof File) && image.key != null;
 
     return client.assets.uploadImages(formData).then(({ images }) => {
+      console.log("AHHH images = ", images);
       // resolve with concatenated array of new S3 images, plus old S3 images.
       return [].concat(images, this.state.images.filter(isS3Image));
     }).catch((err) => {

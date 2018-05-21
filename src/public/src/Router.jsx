@@ -106,7 +106,7 @@ const appRouter = () => {
         <Route path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
         <Route path='/trade' component={Trade}/>
-        <Route path='/trade/asset/:tradingPair' component={TradeView}/>
+        <Route path='/trade/asset/:assetId' component={TradeView}/>
         <Route path='/issue' component={IssueAsset}/>
       </Route>
     </Router>

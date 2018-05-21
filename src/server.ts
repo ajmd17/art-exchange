@@ -60,7 +60,7 @@ app
   '/login',
   '/register',
   '/trade',
-  '/trade/asset/:asset',
+  '/trade/asset/:assetId',
   '/account',
   '/issue'
 ], (req, res) => {
