@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import client from '../../services/client';
 
+import Screen from '../../components/Screen';
+
 class TradeView extends React.Component {
   constructor(props) {
     super(props);
@@ -27,24 +29,41 @@ class TradeView extends React.Component {
       this.setState({
         assetItem
       }, () => {
-        client.assets.getImage(this.state.assetItem.imageHashes[0]).then((data) => {
-          console.log('data = ', data);
-          this.setState({
-            imageData: data
-          });
-        }).catch((err) => client.logger.error('Failed to load image', err));
+        if (this.state.assetItem.images.length != 0) {
+          client.assets.getImage(this.state.assetItem.images[0].ipfsHash).then((data) => {
+            this.setState({
+              imageData: data
+            });
+          }).catch((err) => client.logger.error('Failed to load image', err));
+        }
       });
     }).catch((err) => client.logger.error('Failed to load asset', err));
   };
 
+  renderImage() {
+   //const backgroundImage = this.state.imageData != null ? `url("data:${this.state.assetItem.images[0].mimeType};base64, ${this.state.imageData}")` : null;
+    const imageUrl = this.state.imageData != null ?
+      `data:${this.state.assetItem.images[0].mimeType};base64, ${this.state.imageData}`
+      : null;
+
+    return (
+      <div className='main-image'>
+        {this.state.imageData == null
+          ? <p className='loading-msg'>Loading...</p>
+          : <img src={imageUrl}/>}
+      </div>
+    );
+  }
+
   render() {
     return (
-      <div className='trade-view'>
-        {this.state.imageData != null
-          ? <img src={`base64:${this.state.imageData}`}/>
-          : null}
-        {/* Here is where we will have the charts, order book, etc. */}
-      </div>
+      <Screen className='trade-view' title={this.state.assetItem != null ? this.state.assetItem.title : 'Loading...'}>
+        <div className='content'>
+          {this.renderImage()}
+          <hr/>
+          {/* Here is where we will have the charts, order book, etc. */}
+        </div>
+      </Screen>
     );
   }
 }

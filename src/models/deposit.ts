@@ -85,7 +85,6 @@ depositSchema.methods.checkConfirmed = function () {
       // blockexplorer.com
       const blockexplorer = () => {
         return request.get(`https://blockexplorer.com/api/addr/${this.depositAddress}/balance`).then((value) => {
-          console.log('value: ', value);
           const balance = Decimal(value) * 100000000;
 
           const requiredAmt = Decimal(this.depositAmount);

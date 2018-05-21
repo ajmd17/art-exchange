@@ -30,17 +30,14 @@ const assetRouter = express.Router();
 assetRouter.post('/uploadImages', upload.any(), (req, res) => {
   Promise.all(req.files.map((file, index) => {
     // upload each file to IPFS
-    return ipfs.upload(file.originalname, Buffer.from(file.buffer));
-  })).then((ipfsObjects) => {
-    let imageObjects = [];
-
-    ipfsObjects.forEach((el) => {
-      el.forEach((imageObject) => {
-        imageObjects.push(imageObject);
-      });
+    return ipfs.upload(file.originalname, Buffer.from(file.buffer)).then((ipfsImages) => {
+      return {
+        ipfsImage: ipfsImages[0],
+        mimeType: file.mimetype
+      };
     });
-
-    res.json({ images: imageObjects });
+  })).then((images) => {
+    res.json({ images });
   }).catch((err) => {
     debug.error('Failed to upload images:', err);
     res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
@@ -140,15 +137,33 @@ assetRouter.post('/', authMiddleware, (req, res) => {
   // @TODO upload to ethereum blockchain smart contract
 
   // upload metadata object to IPFS
-  console.log('req.decoded = ', (<any>req).decoded);
-  console.log('req.body = ', req.body);
 
-  const imageHashes = [];
+  const images = [];
 
-  if (req.body.images && req.body.images.length != 0) {
-    req.body.images.forEach((imageObject) => {
-      console.log('imageObject = ', imageObject);
-      imageHashes.push(imageObject.hash);
+  try {
+    if (req.body.images && req.body.images.length != 0) {
+      req.body.images.forEach((imageObject, index) => {
+        if (!imageObject.ipfsImage) {
+          throw Error(`Image #${index + 1} is missing ipfsImage`);
+        } else if (!imageObject.ipfsImage.hash) {
+          throw Error(`Image #${index + 1} is missing ipfsImage.hash`);
+        }
+
+        if (!imageObject.mimeType) {
+          // @TODO check mimetype
+          throw Error(`Image #${index + 1} is missing a mimetype`);
+        }
+
+        images.push({
+          ipfsHash: imageObject.ipfsImage.hash,
+          mimeType: imageObject.mimeType
+        });
+      });
+    }
+  } catch (err) {
+    debug.error('Failed to validate images:', err);
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+      error: 'Images could not be validated'
     });
   }
 
@@ -158,7 +173,7 @@ assetRouter.post('/', authMiddleware, (req, res) => {
     creator: (<any>req).decoded.uid,
     totalSupply: req.body.totalSupply,
 
-    imageHashes
+    images
   }).save().then((assetItem) => {
     res.json({ assetItem });
   }).catch((err) => {

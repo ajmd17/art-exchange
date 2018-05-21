@@ -1,0 +1,23 @@
+.trade-view {
+  > .content {
+    // padding: 0 25px;
+    // max-width: 900px;
+    // margin: 0 auto;
+  }
+
+  .main-image {
+    display: block;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    position: relative;
+    margin: 0 auto;
+    background-color: #f7f8fa;
+    img {
+      position: absolute;
+      top: 0; left: 50%;
+      width: 100%;
+      max-width: 500px;
+      transform: translateX(-50%);
+    }
+  }
+}

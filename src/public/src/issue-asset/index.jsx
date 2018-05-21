@@ -19,7 +19,6 @@ class IssueAsset extends React.Component {
   }
 
   uploadImages() {
-    console.log('this.state.images.length = ', this.state.images.length);
     if (this.state.images.length == 0) {
       return Promise.resolve([]);
     }
@@ -94,7 +93,6 @@ class IssueAsset extends React.Component {
           ref={x => this.uploadPictureForm = x}
           images={this.state.images}
           onImagesSelected={(images) => {
-            console.log(' image selected: ', images);
             this.setState({ images: this.state.images.concat(images) });
           }}
         />

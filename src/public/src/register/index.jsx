@@ -41,14 +41,6 @@ class Register extends React.Component {
 
   handleSubmitClick = () => {
     if (this.validateFields()) {
-      /*auth.logIn(this.state.emailAddressValue, this.state.passwordValue).then((res) => {
-        if (res.error) {
-          this.setState({ errorMessage: res.error });
-        }
-      }).catch((err) => {
-        console.error(err);
-        this.setState({ errorMessage: 'Error: ' + JSON.stringify(err) });
-      });*/
       client.account.register({
         email: this.state.emailAddressValue,
         password: this.state.passwordValue
@@ -59,7 +51,7 @@ class Register extends React.Component {
           browserHistory.push('/login?registration_success=1');
         }
       }).catch((err) => {
-        console.error(err);
+        client.logger.error(err);
         this.setState({ errorMessage: 'Error: ' + err.response.data.error });
       });
     }

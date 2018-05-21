@@ -2,6 +2,7 @@ import * as React from 'react';
 import { browserHistory, Link } from 'react-router';
 
 import auth from '../services/auth';
+import client from '../services/client';
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Login extends React.Component {
         this.setState({ errorMessage: res.error });
       }
     }).catch((err) => {
-      console.error(err);
+      client.logger.error('Failed to log in', err);
       this.setState({ errorMessage: 'Error: ' + JSON.stringify(err) });
     });
   };

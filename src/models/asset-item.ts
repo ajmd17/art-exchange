@@ -35,7 +35,16 @@ const assetItemSchema = new mongoose.Schema({
   // Everything below should be held in the ethereum smart contract.
 
   totalSupply: Number,
-  imageHashes: [String],
+  images: [{
+    ipfsHash: {
+      type: String,
+      required: true
+    },
+    mimeType: {
+      type: String,
+      required: true
+    }
+  }],
   creator: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
