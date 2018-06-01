@@ -18,12 +18,18 @@ const orderSchema = new mongoose.Schema({
   },
   price: Number,
   amount: Number,
-  filled: Number,
+  filled: {
+    type: Number,
+    default: 0
+  },
   executionType: {
     type: String,
     enum: ['market', 'limit']
   },
-  timestamp: Date
+  timestamp: {
+    type: Date,
+    default: Date.now
+  }
 });
 
 const Order = mongoose.model('Order', orderSchema);

@@ -5,6 +5,61 @@
     // margin: 0 auto;
   }
 
+  .buy-sell {
+    display: flex;
+
+    > div {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+
+      .custom-price {
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+
+        > input[type=text] {
+          flex: 1;
+          margin-left: 25px;
+        }
+      }
+
+      > .btn {
+        flex: 1;
+        color: #fff !important;
+        font-size: 22px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        small {
+          display: block;
+          font-size: 16px;
+        }
+  
+        &.buy {
+          background-color: #91B109;
+        }
+  
+        &.sell {
+          background-color: #FE4732;
+        }
+      }
+
+      &.buy-side {
+        margin-right: 5px;
+      }
+
+      &.sell-side {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .available-count {
+    margin-top: 10px;
+    text-align: center;
+  }
+
   .main-image {
     display: block;
     height: 0;

@@ -12,6 +12,7 @@ import authMiddleware from '../../../auth-middleware';
 
 import { User } from '../../../models/user';
 import { AssetItem } from '../../../models/asset-item';
+import { Order } from '../../../models/order';
 
 const UPLOADS_PATH = path.join(__dirname, 'uploads');
 
@@ -101,6 +102,87 @@ assetRouter.get('/:id', (req, res) => {
     });
   }).catch((err) => {
     debug.error(`Failed to load asset with id "${req.params.id}"`, err);
+    res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  });
+});
+
+assetRouter.post('/:id/bids', authMiddleware, (req, res) => {
+  if (req.body.price === undefined) {
+    return res.status(httpStatus.BAD_REQUEST).json({
+      error: 'price unprovided'
+    });
+  } else if (isNaN(req.body.price)) {
+    return res.status(httpStatus.BAD_REQUEST).json({
+      error: 'price should be a number'
+    });
+  }
+
+  if (req.body.amount === undefined) {
+    return res.status(httpStatus.BAD_REQUEST).json({
+      error: 'amount unprovided'
+    });
+  } else if (isNaN(req.body.amount)) {
+    return res.status(httpStatus.BAD_REQUEST).json({
+      error: 'amount should be a number'
+    });
+  }
+
+  AssetItem.findById(req.params.id)
+  .then((assetItem) => {
+    if (assetItem == null) {
+      return res.sendStatus(httpStatus.NOT_FOUND);
+    }
+
+    if (!(<any>assetItem).bids) {
+      (<any>assetItem).bids = [];
+    }
+
+    let order = new Order({
+      creator: (<any>req).decoded.uid,
+      orderType: 'bid',
+      price: req.body.price,
+      amount: req.body.amount,
+      // @TODO execution types
+      executionType: 'limit'
+    });
+
+    (<any>assetItem).bids.push(order);
+
+    assetItem.save().then((assetItem) => {
+      res.sendStatus(httpStatus.OK);
+    }).catch((err) => {
+      debug.error(`Failed to save order for asset with id "${assetItem._id}"`, err);
+      res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+    });
+  }).catch((err) => {
+    debug.error(`Failed to load asset item with id "${req.params.id}"`, err);
+    res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
+  });
+});
+
+assetRouter.get('/:id/orderBook', (req, res) => {
+  let depth;
+
+  if (req.query.depth) {
+    depth = parseInt(req.query.depth);
+  }
+
+  depth = depth || 10;
+
+  AssetItem.findById(req.params.id)
+  .populate({ path: 'bids', options: { sort: { price: -1 } } })
+  .populate({ path: 'asks', options: { sort: { price: 1 } } })
+  .then((assetItem) => {
+    if (assetItem == null) {
+      return res.sendStatus(httpStatus.NOT_FOUND);
+    }
+
+    res.json({
+      bids: (<any>assetItem).bids,
+      asks: (<any>assetItem).asks
+    });
+  }).catch((err) => {
+    debug.error(`Failed to load asset item with id "${req.params.id}"`, err);
     res.sendStatus(httpStatus.INTERNAL_SERVER_ERROR);
   });
 });

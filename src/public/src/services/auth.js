@@ -11,7 +11,8 @@ const auth = {
   user: {
     id: null,
     name: null,
-    email: null
+    email: null,
+    balances: {}
   },
 
   _accessToken: null,
@@ -61,38 +62,6 @@ const auth = {
     }
     
     auth._accessToken = accessToken;
-  },
-
-  /**
-   * Used when event such as first going on the page, login, logout etc happens.
-   * Emits an event to all listeners to update based on logged in or not.
-   * Use with care.
-   */
-  reloadProfileData() {
-    const accessToken = auth.accessToken;
-    
-    if (accessToken) {
-      return Client.Account.fetchProfileData().then((res) => {
-        auth.state = auth.AuthState.SignedIn;
-        auth.user.id = res.uid;
-        auth.user.name = res.name;
-        auth.user.email = res.email;
-
-        //Client.events.getEmitter().emit(Client.events.UPDATE_NAV_AUTH, auth);
-
-        return auth;
-      }).catch(err => Client.logger.error('Failed to load profile data.', err));
-    } else {
-      auth.state = auth.AuthState.NotSignedIn;
-      auth.user.id = null;
-      auth.user.name = null;
-      auth.user.email = null;
-      auth.user.zone = null;
-
-      //Client.events.getEmitter().emit(Client.events.UPDATE_NAV_AUTH, auth);
-
-      return Promise.resolve(auth);
-    }
   }
 };
 

@@ -18,7 +18,9 @@ const userSchema = new mongoose.Schema({
   walletAddresses: {
     type: [String],
     default: []
-  }
+  },
+
+  balances: mongoose.Schema.Types.Mixed
 });
 
 userSchema.methods.getPendingDeposits = function () {

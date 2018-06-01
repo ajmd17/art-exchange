@@ -12,6 +12,7 @@ import { PhoneNumber } from '../../models/phone-number';
 import { Deposit } from '../../models/deposit';
 
 import assetRouter from './asset';
+import authMiddleware from '../../auth-middleware';
 
 const twilioClient = new twilio(config.TWILIO_SID, config.TWILIO_AUTH_TOKEN);
 
@@ -105,6 +106,10 @@ apiRouter.post('/deposits', (req, res) => {
   });
 });
 
+apiRouter.get('/profileData', authMiddleware, (req, res) => {
+  res.json({ user: (<any>req).decoded.user });
+});
+
 apiRouter.post('/login', (req, res) => {
   if (req.body.email === undefined) {
     return res.status(httpStatus.BAD_REQUEST).json({
@@ -181,7 +186,10 @@ apiRouter.post('/register', (req, res) => {
       bcrypt.hash(req.body.password, salt).then((hash) => {
         new User({
           email: req.body.email,
-          passwordHash: hash
+          passwordHash: hash,
+          balances: {
+            'ARTX': 0
+          }
         }).save().then((user) => {
           debug.log('New user registration!', JSON.stringify(user, null, ' '));
           res.sendStatus(httpStatus.OK);

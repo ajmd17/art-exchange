@@ -147,8 +147,15 @@ a {
     margin-right: 10px;
     width: 180px;
     text-align: left;
-    float: left;
+    // float: left;
+    display: block;
   }
+
+  > .content {
+    display: flex;
+    flex-direction: row;
+  }
+
   input[type=text],
   input[type=password],
   input[type=number],
