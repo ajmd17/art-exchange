@@ -3,3 +3,4 @@ lib/**/*
 .DS_Store
 *.env
 uploads/**/*
+build/**/*
